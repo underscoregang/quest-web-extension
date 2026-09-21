@@ -1,27 +1,26 @@
-<img width=100% src="./assets/banner.png" alt="header"/> 
+<img width=100% src="./assets/banner.png" alt="header"/>
 
 # Discord Web Auto Quest Extension
 
-<img align="right" src="./assets/icon.png" width=200 alt="Discord Auto Quest Extension logo">
+<img align="right" src="./assets/Logo/logo256.png" width=200 alt="Discord Auto Quest Extension logo">
 
 Extension that automatically completes Discord quests. No more manually watching videos or playing games - just click a button and let it run quests one by one automatically and work for all device.
 
-Original Source from [**aamiaa**](https://gist.github.com/aamiaa/204cd9d42013ded9faf646fae7f89fbb)  🌸
-
+Original Source from [**aamiaa**](https://gist.github.com/aamiaa/204cd9d42013ded9faf646fae7f89fbb) 🌸
 
 > [!NOTE]
 > [Server Support](https://discord.gg/peachygang)
 
 > [!IMPORTANT]
-> **25/04/2026** 
+> **25/04/2026**
 > Extension is now working normally. Thank you~ 💝
 
 > [!CAUTION]
 > As of April 7th 2026, Discord has expressed their intent to crack down on automating quest completion.
 > Some users have received the following system message:
-> 
+>
 > <img width="836" height="272" alt="image" src="https://i.postimg.cc/1XqDrjc1/quest.webp" />
-> 
+>
 > Use the script at your own risk.
 
 ## What it does
@@ -29,7 +28,7 @@ Original Source from [**aamiaa**](https://gist.github.com/aamiaa/204cd9d42013ded
 This extension hooks into Discord's quest system and automatically completes the requirements for all active quests sequentially. It works with:
 
 - Video watching quests (WATCH_VIDEO, WATCH_VIDEO_ON_MOBILE)
-- Desktop game playing (PLAY_ON_DESKTOP) 
+- Desktop game playing (PLAY_ON_DESKTOP)
 - Desktop streaming (STREAM_ON_DESKTOP)
 - Activity playing (PLAY_ACTIVITY)
 
@@ -74,28 +73,33 @@ For streaming quests, you still need at least one other person in the voice chan
 ## Troubleshooting
 
 **Button doesn't appear:**
+
 - Make sure you're on `discord.com/quest-home`
 - Refresh the page
 - Check that the extension is enabled in `chrome://extensions/`
 
 **Quest not completing:**
+
 - Open the console (F12) and check for error messages
 - Make sure you've accepted the quests first
 - Some quest types work better in the actual Discord desktop app
 - Try refreshing and running the code again
 
 **User-Agent warnings:**
+
 - The console might show warnings about user-agent detection - this is normal
 - The extension uses multiple methods to override it, so it should still work
 
 ## Technical details
 
 Built with Manifest V3. Uses:
+
 - `declarativeNetRequest` for header modification
 - Content scripts for quest page interaction
 - Background service worker for script injection
 - Webpack module interception for Discord internals
 - Concurrent execution with async/await and Promise.all
+
 ## Mobile Version Supported (Android)
 
 1. Download this Extension
@@ -106,7 +110,7 @@ Built with Manifest V3. Uses:
    - A **`Running Quests`** button should appear. Tap it and you're all set!
    - If it doesn't appear, try refreshing the quest page again.
 
-**Notes:** This setup is optimized for mobile via Lemur Browser because of its Chrome extension support. 
+**Notes:** This setup is optimized for mobile via Lemur Browser because of its Chrome extension support.
 
 > [!WARNING]
 > This is a tool for automating Discord quests. Use at your own risk and be aware of Discord's Terms of Service. I'm not responsible if your account gets flagged or banned.

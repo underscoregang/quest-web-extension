@@ -102,8 +102,7 @@
     button.style.cssText = STYLES.button;
 
     const icon = document.createElement("img");
-    icon.src =
-      "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/66e3d8014ea898f3a4b2156c_Symbol.svg";
+    icon.src = chrome.runtime.getURL("assets/Logo/logo32.png");
     icon.alt = "Quest Icon";
     icon.style.cssText = STYLES.icon;
     button.appendChild(icon);
