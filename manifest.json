@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "UNDERSCORE - Discord Web Auto Quest",
+  "name": "Discord Web Auto Quest Extension",
   "version": "1.2.6",
   "description": "Automatically complete Discord quests in the browser without any manual work",
   "icons": {
