@@ -1,119 +1,81 @@
-<img width=100% src="./assets/banner.png" alt="header"/>
+﻿<p align="center">
+  <img src="assets/Logo/logo256.png" width="128" alt="UNDERSCORE logo">
+</p>
+<h1 align="center">UNDERSCORE</h1>
+<p align="center">Discord Web Auto Quest Extension</p>
+<p align="center">A compact quest panel with sequential quest processing.</p>
 
-# Discord Web Auto Quest Extension
+## Motion tutorial
 
-<img align="right" src="./assets/Logo/logo256.png" width=200 alt="Discord Auto Quest Extension logo">
+[Watch the UNDERSCORE setup tutorial](assets/tutorial/underscore-tutorial.mp4)
 
-Extension that automatically completes Discord quests. No more manually watching videos or playing games - just click a button and let it run quests one by one automatically and work for all device.
+A 36-second captioned motion guide to installation and the quest panel. These are illustrated instructions, not a live Discord recording. No audio is required.
 
-Original Source from [**aamiaa**](https://gist.github.com/aamiaa/204cd9d42013ded9faf646fae7f89fbb) 🌸
-
-> [!NOTE]
-> [Server Support](https://discord.gg/peachygang)
-
-> [!IMPORTANT]
-> **25/04/2026**
-> Extension is now working normally. Thank you~ 💝
-
-> [!CAUTION]
-> As of April 7th 2026, Discord has expressed their intent to crack down on automating quest completion.
-> Some users have received the following system message:
->
-> <img width="836" height="272" alt="image" src="https://i.postimg.cc/1XqDrjc1/quest.webp" />
->
-> Use the script at your own risk.
-
-## What it does
-
-This extension hooks into Discord's quest system and automatically completes the requirements for all active quests sequentially. It works with:
-
-- Video watching quests (WATCH_VIDEO, WATCH_VIDEO_ON_MOBILE)
-- Desktop game playing (PLAY_ON_DESKTOP)
-- Desktop streaming (STREAM_ON_DESKTOP)
-- Activity playing (PLAY_ACTIVITY)
-
-The extension spoofs your user-agent to make Discord think you're using the desktop app, which is required for some quest types to work properly. Supports sequential quest execution to ensure stability and proper completion.
+![Tutorial preview](assets/tutorial/preview.png)
 
 ## Installation
 
-1. Clone or download this repo
-2. Open Chrome/Edge and go to `chrome://extensions/`
-3. Toggle "Developer mode" on (top right corner)
-4. Click "Load unpacked" and select the extension folder
-5. You're done!
+1. [Download the repository ZIP](https://github.com/underscoregang/quest-web-extension/archive/refs/heads/develop.zip) and extract it, or clone this repository.
+2. Open `chrome://extensions` in Chrome or `edge://extensions` in Edge.
+3. Enable **Developer mode**.
+4. Choose **Load unpacked** and select the folder containing `manifest.json`.
+5. Confirm that **UNDERSCORE - Discord Web Auto Quest** appears in the extensions list.
 
 ## How to use
 
-1. Go to `https://discord.com/quest-home` in your browser
-2. Accept quests if you haven't already
-3. Look for the "Running Quests" button in the bottom right corner with a Symbol icon
-4. Click it and check the browser console (F12) for progress updates
-5. Expand the panel to see quest details (shows Discord ID and credits)
+1. Open [Discord Quests](https://discord.com/quest-home) and sign in.
+2. Accept an available quest, then refresh the page.
+3. Click **Running Quests** at the bottom right.
+4. Expand the panel to view progress. **Copy JSON** copies the current quest progress data.
+5. If progress stalls, press **F12** to inspect the browser console for errors.
 
-The extension will automatically detect all your active quests and start completing them one by one. Progress is logged to the console so you can see what's happening for each quest.
+The extension selects accepted, unexpired, unfinished quests with supported task types and processes them one at a time. Completion depends on Discord's behavior; support does not guarantee that every quest will complete.
 
-## Requirements
+## Supported task types
 
-- Chrome or any Chromium-based browser (Edge, Brave, etc.)
-- A Discord account with quests available
-- Accepted quests on the quest-home page
+| Task | Identifier |
+| --- | --- |
+| Watch a video | `WATCH_VIDEO` |
+| Watch a mobile video | `WATCH_VIDEO_ON_MOBILE` |
+| Play on desktop | `PLAY_ON_DESKTOP` |
+| Stream on desktop | `STREAM_ON_DESKTOP` |
+| Play an activity | `PLAY_ACTIVITY` |
 
-## How it works
+## Requirements and troubleshooting
 
-The extension uses advanced techniques:
+Use a Chromium browser with extension support and a Discord account with an accepted quest. Mobile browsers must support loading extensions; installation controls vary by browser.
 
-- **User-Agent override**: Modifies HTTP headers and navigator properties to mimic Discord desktop
-- **Webpack module injection**: Hooks into Discord's internal stores (QuestsStore, RunningGameStore, etc.)
-- **Multi-quest concurrency**: Runs all eligible quests in parallel using Promise.all
-- **API spoofing**: Intercepts quest progress updates and sends fake data
-- **Smart detection**: Filters quests by expiration and completion status
+- **No button:** enable the extension, open `/quest-home`, and refresh.
+- **No quests listed:** confirm that a supported quest is accepted, unfinished, and unexpired.
+- **Progress stops:** inspect the console and reload the page. Discord changes may require an extension update.
+- **After updating files:** click **Reload** on the extensions page, then refresh Discord.
 
-For streaming quests, you still need at least one other person in the voice channel - the extension can't fake that part.
+## Project files
 
-## Troubleshooting
+| File | Purpose |
+| --- | --- |
+| `manifest.json` | Manifest V3 configuration and logo paths |
+| `quest-home.js` | Quest button, progress panel, and JSON export |
+| `quest-code.js` | Quest discovery and sequential processing |
+| `background.js` | Service worker and script injection |
+| `user-agent-override.js`, `rules.json` | Browser user-agent overrides |
+| `assets/icon.png` | Original UNDERSCORE artwork |
+| `assets/Logo/` | Extension icons in six sizes |
+| `scripts/build-tutorial.ps1` | Reproducible motion tutorial source |
 
-**Button doesn't appear:**
+To rebuild the tutorial on Windows, install FFmpeg with `libx264` support and run:
 
-- Make sure you're on `discord.com/quest-home`
-- Refresh the page
-- Check that the extension is enabled in `chrome://extensions/`
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/build-tutorial.ps1
+```
 
-**Quest not completing:**
+The video is a silent, captioned 1280 x 720 MP4, with six animated scenes at 30 frames per second.
 
-- Open the console (F12) and check for error messages
-- Make sure you've accepted the quests first
-- Some quest types work better in the actual Discord desktop app
-- Try refreshing and running the code again
+## Credits and license
 
-**User-Agent warnings:**
+Maintained under the **UNDERSCORE** name. Original quest script by [aamiaa](https://gist.github.com/aamiaa/204cd9d42013ded9faf646fae7f89fbb), with prior extension work by [yuuslokrobjakkroval](https://github.com/yuuslokrobjakkroval/peachy-quest-web-extension).
 
-- The console might show warnings about user-agent detection - this is normal
-- The extension uses multiple methods to override it, so it should still work
-
-## Technical details
-
-Built with Manifest V3. Uses:
-
-- `declarativeNetRequest` for header modification
-- Content scripts for quest page interaction
-- Background service worker for script injection
-- Webpack module interception for Discord internals
-- Concurrent execution with async/await and Promise.all
-
-## Mobile Version Supported (Android)
-
-1. Download this Extension
-2. **Download Lemur Browser:** [Download Lemur Browser on Play Store](https://play.google.com/store/apps/details?id=com.lemurbrowser.exts)
-3. Open the browser and tap the **4 Squares Icon** (on the right side) → select **"Extensions"**.
-4. Enable **Developer mode**, then tap **`+ (from .zip/crx/.user.js)`** and upload the extension file you just downloaded.
-5. Open the Discord Quests Page: [Quest](https://discord.com/quest-home), accept at least one quest, select **"Playing on Desktop"**, and then **REFRESH**.
-   - A **`Running Quests`** button should appear. Tap it and you're all set!
-   - If it doesn't appear, try refreshing the quest page again.
-
-**Notes:** This setup is optimized for mobile via Lemur Browser because of its Chrome extension support.
+See [LICENSE](LICENSE) and [Privacy](PRIVACY.md).
 
 > [!WARNING]
-> This is a tool for automating Discord quests. Use at your own risk and be aware of Discord's Terms of Service. I'm not responsible if your account gets flagged or banned.
-
-> [!IMPORTANT]
-> This repository is strictly for educational purposes and security research only. It is designed to demonstrate how web APIs and user-agent spoofing work in a browser environment. Any misuse of this tool is the sole responsibility of the user. The author does not condone any actions that violate third-party Terms of Service.
+> This extension automates quest activity and modifies browser behavior. Using it may violate Discord's terms and put your account at risk. It is not affiliated with or endorsed by Discord.

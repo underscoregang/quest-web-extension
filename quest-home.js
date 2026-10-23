@@ -103,7 +103,7 @@
 
     const icon = document.createElement("img");
     icon.src = chrome.runtime.getURL("assets/Logo/logo32.png");
-    icon.alt = "Quest Icon";
+    icon.alt = "UNDERSCORE logo";
     icon.style.cssText = STYLES.icon;
     button.appendChild(icon);
 
@@ -244,7 +244,7 @@
     panel.appendChild(copyButton);
 
     const title = document.createElement("h3");
-    title.textContent = "Discord ID | Auto Quest";
+    title.textContent = "UNDERSCORE | Auto Quest";
     title.style.cssText =
       "margin: 0 0 12px 0; font-size: 16px; font-weight: bold; border-top: 1px solid #333; padding-top: 12px;";
     panel.appendChild(title);
