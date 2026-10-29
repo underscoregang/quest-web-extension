@@ -1,0 +1,8 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "underscore-quest-extension",
+  "compatibility_date": "2026-10-29",
+  "assets": {
+    "directory": "./dist"
+  }
+}
