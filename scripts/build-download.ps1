@@ -30,11 +30,17 @@ body{margin:0;background:#10111b;color:#eee;font:18px/1.65 system-ui,sans-serif}
 </ol>
 <p>Updates require downloading the latest ZIP, replacing the extracted files, and clicking Reload on the browser's extensions page.</p>
 <p>This extension automates Discord quests. Use at your own risk; your account may be restricted for violating Discord's terms.</p>
-<p><a href="/privacy.txt">Privacy information</a> · <a href="/license.txt">License</a></p>
+<p><a href="/privacy.html">Privacy policy</a> · <a href="/support.html">Support</a> · <a href="/license.txt">License</a></p>
 </main>
 </html>
 '@
 $html.Replace('__VERSION__', [System.Net.WebUtility]::HtmlEncode($manifest.version)) | Set-Content (Join-Path $output 'index.html') -Encoding UTF8
 Copy-Item -LiteralPath (Join-Path $projectRoot 'PRIVACY.md') -Destination (Join-Path $output 'privacy.txt')
 Copy-Item -LiteralPath (Join-Path $projectRoot 'LICENSE') -Destination (Join-Path $output 'license.txt')
+$privacyText = [System.Net.WebUtility]::HtmlEncode((Get-Content (Join-Path $projectRoot 'PRIVACY.md') -Raw -Encoding UTF8))
+$privacyHtml = '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Privacy policy - UNDERSCORE</title><style>body{max-width:850px;margin:40px auto;padding:24px;font:17px/1.7 system-ui;color:#202332}pre{white-space:pre-wrap;font:inherit;overflow-wrap:anywhere}</style><a href="/">Home</a> | <a href="/support.html">Support</a><pre>' + $privacyText + '</pre></html>'
+$privacyHtml | Set-Content (Join-Path $output 'privacy.html') -Encoding UTF8
+@'
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Support - UNDERSCORE</title><style>body{max-width:750px;margin:40px auto;padding:24px;font:18px/1.7 system-ui;color:#202332}a{color:#4338ca}</style><main><a href="/">Home</a><h1>Extension support</h1><p>For help with Discord Web Auto Quest Extension, use the project's support community.</p><p><a href="https://discord.gg/peachygang">Open Discord support community</a></p><h2>What to include</h2><p>Your browser version, extension version, a description of the problem, and any relevant error message. Remove personal information from screenshots. Never send passwords, authentication tokens, or private messages.</p><h2>Installation help</h2><p>Extract the downloaded ZIP, open your browser's extensions page, enable Developer mode, then select Load unpacked and choose the folder containing manifest.json.</p><p><a href="/privacy.html">Privacy policy</a></p></main></html>
+'@ | Set-Content (Join-Path $output 'support.html') -Encoding UTF8
 Write-Output "Built download site and extension v$($manifest.version) in $output"
